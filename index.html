@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Union IQ Checker</title>
+
+  <!-- Brand fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js + html2canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <!-- Preload assets -->
+  <link rel="preload" as="image" href="union-logo.svg">
+  <link rel="preload" as="image" href="retard1.png">
+  <link rel="preload" as="image" href="retard2.png">
+  <link rel="preload" as="image" href="retard3.png">
+  <link rel="preload" as="image" href="retard4.png">
+
+  <style id="critical-css">
+    /* minimal critical styles to avoid FOUC; full styles will come in CSS file */
+    :root { --black:#000; --cyan:#A0ECFD; --text:#fff; }
+    *{ box-sizing:border-box }
+    html,body{ height:100%; background:#0b0d10; margin:0; }
+    body{ font-family:"JetBrains Mono", monospace; color:#e9eef2; }
+    header, footer{
+      position:fixed; left:0; right:0; display:flex; align-items:center; justify-content:space-between;
+      padding:14px 18px; background:#000; z-index:10; border-bottom:1px solid rgba(160,236,253,.2);
+    }
+    header .brand { display:flex; align-items:center; gap:12px; }
+    header img{ height:22px }
+    header .title{ margin-left:auto; font-weight:700; color:#e9eef2; letter-spacing:.3px }
+    main{ padding:96px 16px 80px; display:flex; justify-content:center; }
+    .card{ width:100%; max-width:720px; background:#0f1317; border:1px solid rgba(160,236,253,.25); border-radius:18px; padding:18px; }
+    .search{ display:flex; gap:8px; align-items:center; }
+    .search input{ flex:1; background:#0b0f13; border:1px solid rgba(160,236,253,.3); color:#e9eef2; border-radius:12px; padding:12px 14px; outline:none }
+    .search button{ background:#A0ECFD; color:#000; border:none; border-radius:10px; padding:10px 14px; font-weight:700; cursor:pointer }
+    footer{
+      top:auto; bottom:0; border-top:1px solid rgba(160,236,253,.2); border-bottom:none;
+      color:#b9c6cf; font-size:12px; justify-content:center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header (fixed) -->
+  <header>
+    <div class="brand">
+      <img src="union-logo.svg" alt="Union logo" />
+    </div>
+    <div class="title">Union IQ Checker</div>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <div class="card" id="card">
+      <!-- Search -->
+      <div class="search" id="searchBar">
+        <input id="usernameInput" type="text" placeholder="@username" autocomplete="off" />
+        <button id="checkBtn" type="button">Check</button>
+      </div>
+
+      <!-- Result -->
+      <section id="result" style="display:none; margin-top:14px;">
+        <h2 id="resultTitle" class="headline" style="text-align:center; margin:10px 0 4px; font-weight:700;">
+          <span id="handle">@handle</span>'s IQ score: <span id="iqValue">—</span>
+        </h2>
+        <div id="iqLabel" class="subhead" style="text-align:center; font-size:12px; opacity:.9;">&nbsp;</div>
+
+        <!-- Chart container -->
+        <div class="chart-wrap">
+          <canvas id="iqChart" height="320"></canvas>
+
+          <!-- small badge image by section -->
+          <img id="sectionBadge" alt="">
+        </div>
+
+        <!-- Actions -->
+        <div class="actions" style="display:flex; gap:10px; justify-content:flex-start; padding:8px 2px;">
+          <button id="copyBtn" class="action-btn" type="button">Copy</button>
+          <button id="downloadBtn" class="action-btn" type="button">Download</button>
+          <button id="shareBtn" class="action-btn" type="button">Share on 𝕏</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer (fixed) -->
+  <footer>
+    Your IQ is based on your contributions as a Union Maxi multiplied by a magic formula ✨
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" style="position:fixed; left:50%; transform:translateX(-50%); bottom:76px; background:#11171c; border:1px solid rgba(160,236,253,.35); color:#e9eef2; padding:8px 12px; border-radius:10px; display:none; z-index:11; font-size:12px;">Copied!</div>
+
+  <!-- Full CSS + JS will be included in the next responses -->
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</body>
+</html>
