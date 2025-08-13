@@ -407,7 +407,7 @@ function wireEvents(){
     const handle = $('#handle').textContent || '';
     const iq = $('#iqValue').textContent || '';
     const u = new URL(window.location.href);
-    const text = `I scored ${iq} on the Union IQ Checker 🧠\n\nAm i Not Smart? 🤓\nCheck Your IQ: union-iq.vercel.app\n\nYou dont have to be smart to preach @union_build\n\n#union`;
+    const text = `I scored ${iq} on the Union IQ Checker 🧠\n\nAm i Not Smart? 🤓\nCheck Your IQ: union-iq.vercel.app\n\nYou dont have to be smart to preach @union_build\n\nhttps://x.com/Shinosuka_eth/status/1955529120122802279?t=xU5s59m41M8M8kYt3nwEQQ&s=19`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   });
