@@ -1,0 +1,255 @@
+/* ==========================
+   UNION BRAND THEME
+========================== */
+:root{
+  --primary: #000000;         /* black */
+  --secondary: #A0ECFD;       /* cyan */
+  --text: #E9EEF2;            /* light text */
+  --muted: #B9C6CF;
+  --card: #0F1317;
+  --card-border: rgba(160,236,253,.28);
+  --line: rgba(160,236,253,.22);
+  --focus: rgba(160,236,253,.55);
+  --btn-text: #000;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow: 0 6px 28px rgba(0,0,0,.45);
+}
+
+/* Global reset */
+*{ box-sizing:border-box; }
+html, body{ height:100%; }
+html{ background:#0B0D10; }
+body{
+  margin:0;
+  color:var(--text);
+  font: 14px/1.45 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+
+  /* Subtle repeated pattern with Union "U" as watermark */
+  background:
+    radial-gradient(transparent 0, transparent 60%, rgba(0,0,0,0.05) 61%) center/28px 28px,
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>\
+  <text x='6' y='16' font-family='JetBrains Mono' font-size='14' fill='%23A0ECFD' fill-opacity='0.08'>U</text>\
+</svg>") repeat;
+  background-color:#0B0D10;
+}
+
+/* ==========================
+   HEADER / FOOTER (FIXED)
+========================== */
+header, footer{
+  position:fixed; left:0; right:0;
+  background:var(--primary);
+  z-index:20;
+}
+header{
+  top:0;
+  height:60px;
+  display:flex; align-items:center; gap:12px;
+  padding:0 18px;
+  border-bottom:1px solid var(--line);
+}
+header .brand{ display:flex; align-items:center; gap:10px; }
+header img{ height:24px; width:auto; display:block; }
+header .title{
+  margin-left:auto;
+  color:var(--text);
+  font-weight:700;
+  letter-spacing:.3px;
+  font-size:14px;
+}
+
+footer{
+  bottom:0;
+  min-height:52px;
+  display:flex; align-items:center; justify-content:center;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:12px;
+  padding:10px 14px;
+  text-align:center;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+main{
+  padding:96px 14px 80px;            /* space for fixed bars */
+  min-height:100%;
+  display:flex; align-items:flex-start; justify-content:center;
+}
+.card{
+  width:100%;
+  max-width:720px;
+  background:var(--card);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+/* ==========================
+   SEARCH BAR
+========================== */
+.search{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.search input{
+  flex:1;
+  height:44px;
+  padding:0 14px;
+  color:var(--text);
+  background:#0B0F13;
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-md);
+  outline:none;
+  transition:border-color .18s ease, box-shadow .18s ease;
+}
+.search input::placeholder{ color:#90A2AE; opacity:.7; }
+.search input:focus{
+  border-color:var(--secondary);
+  box-shadow:0 0 0 3px rgba(160,236,253,.12);
+}
+.search button{
+  height:44px;
+  padding:0 16px;
+  border:0;
+  border-radius:var(--radius-md);
+  background:var(--secondary);
+  color:var(--btn-text);
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .06s ease, box-shadow .18s ease, filter .18s ease;
+}
+.search button:hover{ filter:brightness(1.05); }
+.search button:active{ transform:translateY(1px); }
+
+/* ==========================
+   RESULT AREA
+========================== */
+.headline{
+  font-size:16px;
+  font-weight:700;
+  text-align:center;
+  margin:10px 0 6px;
+}
+.subhead{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+/* Chart wrapper (controls canvas height) */
+.chart-wrap{
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  height: 320px;              /* fixed render area for Chart.js */
+  margin: 10px auto 6px;
+}
+.chart-wrap canvas{
+  width:100% !important;
+  height:100% !important;     /* fill wrapper’s height */
+  display:block;
+  background:transparent;
+  border-radius:12px;
+}
+
+/* Small badge (retard*.png) */
+#sectionBadge{
+  position:absolute; right:6px; top:6px;
+  width:44px; height:44px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  box-shadow:0 4px 14px rgba(0,0,0,.35);
+  background:#0B0F13;
+  object-fit:cover;
+  display:none;
+}
+
+/* ==========================
+   ACTION BUTTONS
+========================== */
+.actions{
+  display:flex;
+  gap:10px;
+  padding:6px 0 0;
+}
+.action-btn{
+  appearance:none;
+  border:1px solid var(--line);
+  background:#0B0F13;
+  color:var(--text);
+  border-radius:10px;
+  padding:9px 12px;
+  font-size:12px;
+  cursor:pointer;
+  transition:border-color .16s ease, transform .06s ease, background .16s ease;
+}
+.action-btn:hover{ border-color:var(--secondary); }
+.action-btn:active{ transform:translateY(1px); }
+
+/* ==========================
+   TOAST
+========================== */
+#toast{
+  position:fixed;
+  left:50%; transform:translateX(-50%);
+  bottom:76px;
+  background:#11171C;
+  border:1px solid var(--line);
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:10px;
+  display:none;
+  z-index:22;
+  font-size:12px;
+}
+#toast.show{ display:block; }
+
+/* ==========================
+   TWEAKS: keep PFP visible
+   - Nudge the headline left and reserve right space
+   - Lift badge above chart so it doesn't overlap the avatar pin
+========================== */
+#result .headline{
+  padding-right: 72px;           /* reserve space for the badge */
+  transform: translateX(-6px);   /* nudge score a bit left */
+}
+
+#sectionBadge{
+  top: -48px;          /* lift near the headline (was 6px inside chart) */
+  right: 10px;         /* keep near right edge */
+  z-index: 5;          /* above chart line, below header */
+  pointer-events: none;/* don't block clicks or tooltips */
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media (max-width:520px){
+  .card{ padding:14px; }
+  header{ padding:0 12px; }
+  header .title{ font-size:13px; }
+  .search input{ height:42px; }
+  .search button{ height:42px; }
+  .chart-wrap{ height:280px; }
+  #sectionBadge{ width:40px; height:40px; }
+
+  /* responsive tweak for small screens */
+  #result .headline{
+    padding-right: 64px;
+    transform: translateX(-4px);
+  }
+  #sectionBadge{
+    top: -44px;
+    right: 6px;
+  }
+  }
